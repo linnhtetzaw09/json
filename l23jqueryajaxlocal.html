@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Jquery AJAX - Local</title>
+</head>
+<style type="text/css">
+    
+</style>
+<body>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        //=> $.ajax()
+
+        // $.ajax({
+        //     method:'',
+        //     url:url,
+        //     dataType:'json',    //text
+        // }).done((data)=>{
+        //     output
+        // }).fail(()=>{
+        //     error
+        // });
+
+        const url = "./l5simpledata.json";
+
+        //Method 1
+        $.ajax({
+            method:"GET",
+            url:url,
+            dataType:'json'
+        }).done((data)=>{
+            console.log(data);
+            console.log(data.firstname,data.lastname);     //Dot Notation
+            console.log(data.qualify[0].subject);  //Dot Notation
+            console.log(data.qualify[0]["mark"]);  //Bracket Notation
+
+            console.log(data.holidays[1]);  //Dot Notation
+            console.log(data.qualify[1]["subject"],data.qualify[1]["mark"]);  //Bracket Notation
+        }).fail((error)=>{
+            console.log("Error");
+        });
+
+
+        //Method 2
+        // $.ajax({
+        //     method:"GET",
+        //     url:url,
+        //     dataType:'json',
+        //     success:(getdata)
+        // })
+
+        // function getdata(data,status,xhr){
+        //     console.log(data);
+        //     console.log(typeof data);   //object
+
+        //     console.log(status);        //success
+
+        //     console.log(xhr);
+        //     console.log(xhr.status);    //200
+
+        //     console.log(data.firstname,data.lastname);     //Dot Notation
+        //     console.log(data.qualify[0].subject);  //Dot Notation
+        //     console.log(data.qualify[0]["mark"]);  //Bracket Notation
+
+        //     console.log(data.holidays[1]);  //Dot Notation
+        //     console.log(data.qualify[1]["subject"],data.qualify[1]["mark"]);  //Bracket Notation
+        // }
+
+        //Method 3 (short hand)
+
+        // $.get(url,output);
+
+        // function output(data){
+        //     console.log(data);
+        //     console.log(data.firstname);
+        // }
+
+
+        //Method 4
+
+        // $.getJSON(url,{
+        //     format:'json'  
+        // }).done((data)=>{
+        //     output
+        // }).fail(()=>{
+        //     error
+        // }).always(function(){
+
+        // });
+
+        $.getJSON(url,{
+            format:"json"
+        }).done(function(data){
+            console.log(data);
+            console.log(data.firstname,data.lastname);
+        }).fail(function(){
+            console.log("Errors");
+        }).always(function(){
+            console.log('Bye Bye');
+        });
+
+
+       
+    </script>
+</body>
+</html>

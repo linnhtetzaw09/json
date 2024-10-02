@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fetch data by Chuck Norris Jokes</title>
+</head>
+<style type="text/css">
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        width: 300px;
+        background-color: #f4f4f4;
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="container">
+        <div id="display"></div>
+        <button type="button" id="btn">Load Data</button>
+    </div>
+
+    <script type="text/javascript">
+        const getdisplay = document.getElementById('display');
+        const getbtn = document.getElementById('btn');
+
+        getbtn.addEventListener('click', function() {
+            loaddata();
+        });
+
+        function loaddata() {
+            const uri = `https://api.chucknorris.io/jokes/random`;
+            
+
+            fetch(uri).then(response=>response.json()).then(data=>{
+            console.log(data);
+            let html = `<img src="${data.icon_url}" alt="Chuck Norris Icon" />
+                                <p>${data.value}</p>`;
+
+             getdisplay.innerHTML = html;
+            }).catch(err=>console.log(err));
+
+           
+        }
+    </script>
+</body>
+</html>

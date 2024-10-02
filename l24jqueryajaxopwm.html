@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Jquery AJAX - Local</title>
+</head>
+<style type="text/css">
+    
+</style>
+<body>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        const latitude = "21.9826928";
+        const longtitude = "96.098549";
+        const key = "665cfb35509517a4f0a69b33333e2f09";
+        let uri = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longtitude}&appid=665cfb35509517a4f0a69b33333e2f09`;
+
+        //Method 1
+        $.ajax({
+            method:"GET",
+            url:uri,
+            dataType:'json'
+        }).done((data)=>{
+            console.log(data);
+            console.log(data.weather);     //Dot Notation
+            console.log(data.weather[0]);  //Dot Notation
+            console.log(data.weather[0]["main"]);  //Bracket Notation
+
+            console.log(data.wind.speed);  //Dot Notation
+            console.log(data.wind["speed"]);  //Bracket Notation
+            console.log(data["wind"]["speed"]);  //Bracket Notation
+
+            console.log(data.name);       //Mandalay
+            console.log(data["name"]);    //Mandalay
+        }).fail((error)=>{
+            console.log("Error");
+        });
+
+       
+    </script>
+</body>
+</html>

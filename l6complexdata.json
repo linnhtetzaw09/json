@@ -1,0 +1,63 @@
+{
+   "articles":[
+        {
+            "title":"This is new article 1",
+            "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+            "rating":5
+        },
+        {
+            "title":"This is new article 3",
+            "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+            "rating":5
+        },
+        {
+            "title":"This is new article 5",
+            "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+            "rating":5
+        },
+        {
+            "title":"This is new article 7",
+            "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+            "rating":5
+        }
+   ],
+   "sport":[
+        {
+            "title":"This is new sport 2",
+            "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+            "rating":5
+        },
+        {
+            "title":"This is new sport 1",
+            "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+            "rating":5
+        },
+        {
+            "title":"This is new sport 5",
+            "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+            "rating":5
+        },
+        {
+            "title":"This is new sport 4",
+            "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+            "rating":5
+        },
+        {
+            "title":"This is new sport 6",
+            "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+            "rating":5
+        }
+   ],
+   "stories":[
+    {
+        "title":"This is new stories 9",
+        "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+        "rating":5
+    },
+    {
+        "title":"This is new stories 10",
+        "content":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+        "rating":5
+    }
+    ]
+}

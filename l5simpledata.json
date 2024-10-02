@@ -1,0 +1,14 @@
+{
+    "firstname":"Lin",
+    "lastname":"Htet",
+    "age":22,
+    "tax":false,
+    "passport":null,
+    "remark":"Lorem ipsum dolor sit amet \"consectetur\" adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+    "holidays":["Sat","Sun"],
+    "qualify":[
+        {"subject":"Myanmar","mark":80},
+        {"subject":"English","mark":82},
+        {"subject":"Maths","mark":99}
+    ]
+}

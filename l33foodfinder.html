@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Food Finder</title>
+</head>
+<style type="text/css">
+
+    body {
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 60vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    button{
+        font-size: 14px;
+        padding: 8px 10px;
+        margin: 0;
+        cursor: pointer;
+    }
+
+    .displayone{
+        width: 70%;
+    }
+
+    .displayone img{
+        width: 200px;
+        border: 5px solid #fff;
+    }
+
+    .displayone p{
+        text-align: justify;
+    }
+
+</style>
+<body>
+
+    <div class="container">
+
+        <h1>Food Finder</h1>
+        <button type="button" id="random-btn" class="random-btn">Get Food Random</button>
+
+        <div id="header"></div>
+        <div id="displayone" class="displayone"></div>
+
+    </div>
+    
+    <script type="text/javascript">
+
+        const getbtn = document.getElementById("random-btn");
+        const getheader = document.getElementById("header");
+        const getdisplayone = document.getElementById("displayone");
+
+        getbtn.addEventListener('click',getrandomfood);
+
+        function getrandomfood(){
+            const url = "https://www.themealdb.com/api/json/v1/1/random.php";
+
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const food = data.meals[0];
+                foodsettertodom(food);
+            })
+            .catch(err => console.log(err));
+        }
+
+        function foodsettertodom(food){
+
+            // Set the meal name in the header
+            getheader.innerHTML = `<h2>${food.strMeal}</h2>`;
+
+            // Display the food image, instructions, and ingredients
+            const ingredients = [];
+
+            // Loop through the ingredients and measurements
+            for (let i = 1; i <= 20; i++) {
+                const ingredient = food[`strIngredient${i}`];
+                const measure = food[`strMeasure${i}`];
+
+                // Only add ingredients that are not empty
+                if (ingredient && ingredient.trim() !== '') {
+                    ingredients.push(`${ingredient} ${measure}`);
+                }
+            }
+
+            getdisplayone.innerHTML = `
+                <img src="${food.strMealThumb}" alt="Food Image">
+                <h4>${food.strCategory}</h4>
+                <hr/>
+                <p>${food.strInstructions}</p>
+                <div>
+                    <h3>Main Ingredients</h3>
+                    <ol>
+                         ${ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                    </ol>
+                </div>
+            `;
+        }
+        
+    </script>
+</body>
+</html>

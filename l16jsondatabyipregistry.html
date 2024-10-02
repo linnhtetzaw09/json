@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IP Registry</title>
+</head>
+<style type="text/css">
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        width: 300px;
+        background-color: #f4f4f4;
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="container">
+        <div id="display"></div>
+        <button type="button" id="btn">Click Me</button>
+    </div>
+
+    <script type="text/javascript">
+        const getdisplay = document.getElementById('display');
+        const getbtn = document.getElementById('btn');
+
+        getbtn.addEventListener('click', function() {
+            loaddata();
+        });
+
+        function loaddata() {
+            const key = 'pv92v9su7w22tgx3';
+            const uri = `https://api.ipregistry.co?key=${key}`;
+
+            const xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.open('GET', uri);
+
+            xmlhttp.onload = function() {
+                let result = xmlhttp.responseText;
+
+                console.log(result);
+                result = JSON.parse(result);
+
+                let html = `
+                            <ul>
+                                <li>External IP: ${result.ip}</li>
+                                <li>City: ${result.location.city}</li>
+                                <li>Region: ${result.location.region.name}</li>
+                                <li>Country: ${result.location.country.name}</li>
+                                <li>Local Currency: ${result.currency.code}</li>
+                                <li>Local Currency: ${result['time_zone']['id']}</li>
+                                <li>Operating System: ${result.user_agent.os.name}</li>
+                            </ul>
+                            `;
+                
+                getdisplay.innerHTML = html;
+            }
+
+            xmlhttp.send();
+        }
+    </script>
+</body>
+</html>

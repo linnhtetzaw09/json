@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Axios with ipregistry</title>
+</head>
+<style type="text/css">
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        width: 300px;
+        background-color: #f4f4f4;
+        padding: 10px;
+        text-align: center;
+    }
+    
+</style>
+<body>
+
+    <div class="container">
+        <div id="display"></div>
+        <button type="button" id="btn">Load Data</button>
+    </div>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script type="text/javascript">
+
+        const key = 'pv92v9su7w22tgx3';
+        const uri = `https://api.ipregistry.co?key=${key}`;
+
+        const getdisplay = document.getElementById('display');
+        const getbtn = document.getElementById('btn');
+
+        getbtn.addEventListener('click', function() {
+            loaddata();
+        });
+
+        function loaddata(){
+
+            axios.get(uri).then((data)=>{
+            
+            console.log(data);
+  
+            let html = `
+                            <ul>
+                                <li>External IP: ${data.data.ip}</li>
+                                <li>City: ${data.data.location.city}</li>
+                                <li>Region: ${data.data.location.region.name}</li>
+                                <li>Country: ${data.data.location.country.name}</li>
+                                <li>Local Currency: ${data.data.currency.code}</li>
+                                <li>Operating System: ${data.data.user_agent.os.name}</li>
+                            </ul>
+                        `;
+                
+            getdisplay.innerHTML = html;
+             
+            }).catch(error=>{
+            console.log(error);
+            });
+
+        }
+        
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript object Literal and JSON object</title>
+</head>
+<body>
+
+    <script type="text/javascript">
+
+        const employees = {
+            firstname:"Lin",
+            lastname:"Htet",
+            "age":21,
+            'tax':true,
+            getname:function(){
+                return "I am "+this.firstname+" "+this.lastname;
+            }
+        };
+
+        console.log(employees);
+        console.log(employees.firstname,employees.lastname);
+        console.log(employees.age,employees.tax);
+        console.log(employees.getname());
+
+        let student = {
+            "firstname":"Lin",
+            "lastname":"Htet",
+            "age":22,
+            "tax":false,
+            "passport":null,
+            "remark":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla excepturi facilis alias quos unde rerum nihil.",
+            "holidays":["Sat","Sun"],
+            "qualify":[
+                {"subject":"Myanmar","mark":80},
+                {"subject":"English","mark":82},
+                {"subject":"Maths","mark":99},
+            ]
+        }
+
+        console.log(student);
+        console.log(student.firstname,student.lastname);
+        console.log(student.age,student.tax);
+        console.log(student.passport);
+        console.log(student.holidays);
+        console.log(student.holidays[0],student.holidays[1]);
+        console.log(student.qualify);
+        console.log(student.qualify[0]);
+        console.log(student.qualify[0].subject,student.qualify[0].mark);
+
+    </script>
+    
+</body>
+</html>
