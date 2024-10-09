@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Scroll Project</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha512-9BwLAVqqt6oFdXohPLuNHxhx36BVj5uGSGmizkmGkgl3uMSgNalKc/smum+GJU/TTP0jy0+ruwC3xNAk3F759A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style type="text/css">
+    body {
+        font-family: sans-serif;
+        background-color: #f4f4f4;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 0;
+        margin: 0;
+    }
+
+    .post{
+        width: 500px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+        padding: 20px;
+        margin: 40px 0;
+
+        position: relative;
+    }
+
+    .post .postid{
+        width: 30px;
+        height: 30px;
+        background-color: #000;
+        color: #fff;
+        font-size: 15px;
+        border-radius: 50%;
+
+        position: absolute;
+        right: -15px;
+        bottom: -15px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loader{
+        display: flex;
+
+        position: fixed;
+        bottom: 10px;
+
+        opacity: 0;
+    }
+
+    .loader.show{
+        opacity: 1;
+    }
+
+    .triangle{
+        width: 0px;
+        height: 30px;
+        /* background-color: black; */
+
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid blue;
+
+        margin: 5px;
+
+        animation: myani 0.5s ease-in-out infinite;
+    }
+
+    .triangle:nth-of-type(2){
+        animation-delay: 0.1s;
+    }
+
+    .triangle:nth-of-type(3){
+        animation-delay: 0.2s;
+    }
+
+    @keyframes myani {
+        0%{
+            transform: translateY(0);
+        }
+
+        50%{
+            transform: translateY(-10px);
+        }
+
+        100%{
+            transform: translateY(0);
+        }
+    }
+
+</style>
+<body>
+
+    <div class="container">
+
+        <!-- <div class="post">
+            <div class="postid">1</div>
+            <div class="info">
+                <img src="https://randomuser.me/api/portraits/women/88.jpg" alt="" />
+                <h4 class="title">Mr. Lisa</h4>
+                <a href="tel:0915345678" class="content">0915345678</a>
+                <br>
+                <a href="mailto:lisa@gmail.com">lisa@gmail.com</a>
+                <p class="country">Thailand</p>
+            </div>
+        </div> -->
+
+        <!-- <div class="post">
+            <div class="postid">2</div>
+            <div class="info">
+                <img src="https://randomuser.me/api/portraits/women/53.jpg" alt="" />
+                <h4 class="title">Mr. Connie</h4>
+                <a href="tel:0912775678" class="content">0912775678</a>
+                <br>
+                <a href="mailto:connie@gmail.com">connie@gmail.com</a>
+                <p class="country">Thailand</p>
+            </div>
+        </div> -->
+
+    </div>
+
+    <div class="loader">
+        <div class="triangle"></div>
+        <div class="triangle"></div>
+        <div class="triangle"></div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+
+        const getcontainer = document.querySelector('.container');
+        const loading = document.querySelector('.loader');
+
+        let page = 1;
+        const limit = 3;
+
+        let x = 0;
+
+        async function getposts(){
+
+            const url = `https://randomuser.me/api/?page=${page}&results=${limit}&seed=abc`;
+
+            let posts = [];
+
+            await fetch(url).then(response => {
+                return response.json();
+            }).then(data => {
+                // Get the result from API
+                posts = data.results;
+                // console.log(posts);
+            }).catch(err => {
+                console.log(err);
+            });
+
+            return posts;
+        }
+
+        // getposts();
+
+        async function showPostDom(){
+
+            const getusers = await getposts();  
+            // console.log(getusers); 
+
+            getusers.forEach((getuser, idx) => { 
+                const newDiv = document.createElement('div');
+                newDiv.classList.add("post");
+
+                newDiv.innerHTML = `
+                    <div class="postid">${++x}</div>
+                    <div class="info">
+                        <img src="${getuser.picture.large}" alt="${getuser.name.first}" />
+                        <h4 class="title">${getuser.name.title}. ${getuser.name.first} ${getuser.name.last}</h4>
+                        <a href="tel:${getuser.phone}" class="content">${getuser.phone}</a>
+                        <br>
+                        <a href="mailto:${getuser.email}">${getuser.email}</a>
+                        <p class="country">${getuser.location.country}</p>
+                    </div>
+                `;
+
+                getcontainer.appendChild(newDiv);
+            });
+        }
+
+        showPostDom();
+
+        window.addEventListener('scroll',()=>{
+
+            // console.log(document.documentElement.scrollTop);          // 0 to 391
+            // console.log(document.documentElement.clientHeight);       //730
+            // console.log(document.documentElement.scrollHeight);       // 1121
+
+            const {scrollTop,clientHeight,scrollHeight} = document.documentElement;
+            // console.log(scrollTop,clientHeight,scrollHeight);   //391.20001220703125 730 1121
+
+            if((scrollTop+clientHeight) >= scrollHeight - 10){
+                // console.log('hay');
+
+                showLoading();
+            }
+
+        });
+
+
+        function showLoading(){
+            loading.classList.add('show');
+
+            setTimeout(()=>{
+                loading.classList.remove('show');
+                page++;
+                showPostDom();
+            },500);
+        }
+
+
+
+
+
+    </script>
+</body>
+</html>
