@@ -1,0 +1,10 @@
+https://firebase.google.com
+
+click on -> go to console > create a project 
+project name : MyFirstProject
+terms and condition > checked
+confirm > checked 
+click > continue
+enable google anaylsis > unchecked
+click > create project
+click > continue
