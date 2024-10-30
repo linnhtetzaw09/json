@@ -125,7 +125,7 @@
         const getwind = document.querySelector('.wind > .winddata');
         const getpressure = document.querySelector('.pressure > .predata');
         const gettemperature = document.querySelector('.temperature > .temdata');
-        const getforecast = document.querySelector('.forecast');
+        const getUIforecast = document.querySelector('.forecast');
 
         let city = "Yangon";
 
@@ -147,20 +147,108 @@
 
         });
 
-        let weatherbycity = async (city) => {
-            console.log(city);
+        let getWeatherByCityName = async function(city){
+            let url = `${weatherurl}&q=${city}`;
+            // console.log(url);
+
+            let response = await fetch(url);
+            // console.log(response);
+
+            if(response.status !== 200){
+                alert("No result !");
+                return;
+            }
+
+            let data = await response.json();
+            console.log(data);
+
         }
 
+        let weatherbycity = async (city) => {
+            let response = await getWeatherByCityName(city);
+            console.log(response);
+            getWeatherToDom(response);
 
+            const cityId = response.id;
+            // console.log(cityId);
 
+            let fiveDaysForecast = await getForecastByCityId(cityId);
+            getForecastToDom(fiveDaysForecast);
+        };
 
+        let getForecastByCityId = async function(cityId){
 
+            let url = `${forecasturl}&id=${cityId}`;
+            // console.log(url);
+            let response = await fetch(url);
+            let data = await response.json();
+            // console.log(data);
 
+            let forecasstLists = data.list;
+            console.log(forecasstLists);
 
+            let comingDatas = [];
 
+            forecasstLists.forEach(forecasstList => {
+                // console.log(forecasstList);
 
+                let date = new Date(forecasstList.dt_txt);
+                let hours = date.getHours();
+                if(hours === 12){
+                    comingDatas.push(forecasstList);
+                }
 
+            });
+
+            console.log(comingDatas);
+
+            return comingDatas;
+        }
+
+        let getWeatherToDom = (data) => {
+            console.log(data);
+
+             getcity.textContent = `${data.name}, ${data.sys.country}`;
+             getdayname.textContent = 'coming';
+             gethumidity.textContent = data.main.humidity;
+             getwind.textContent = data.wind.speed;
+             getpressure.textContent = data.main.pressure;
+             gettemperature.textContent = data.main.temp > 0 ? `+${data.main.temp}` : `-${data.main.temp}`;
+
+        }
+        
+        let getForecastToDom = (forecasts) => {
+            console.log(forecasts);
+
+            getforecast.innerHTML = "";
+
+            forecasts.forEach((forecast) => {
+                // console.log(forecast);
+
+             let temperature = forecast.main.temp > 0 ? `+${Math.round(forecast.main.temp)}` : `-${data.main.temp}`
+
+                let html = `
+                        <div>
+                            <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" class="" alt="icon"/>
+                            <h3 class="otherday">getdayname</h3>
+                            <p class="temperature"><span class="othertemdata">${temperature}</span> &deg;C</p>
+                        </div>
+                `;
+                getUIforecast.insertAdjacentHTML("beforeend",html);
+
+            });
+        }
 
     </script>
 </body>
 </html>
+
+
+<!--
+
+ beforebegin
+beforeend firstin firstout
+afterbegin
+afterend
+
+-->

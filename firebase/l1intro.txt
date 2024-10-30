@@ -8,3 +8,16 @@ click > continue
 enable google anaylsis > unchecked
 click > create project
 click > continue
+
+
+=> Register an app for web
+
+click </> web icon
+Register app = My First App For Web
+Also set up hosting = unchecked
+click > Register app
+click > click continue to console
+
+=> Get firebase SDK Code (Software Development Kit)
+
+click > left side bar "project overview > project setting > u can see ur app code"
