@@ -200,8 +200,9 @@
                 // console.log('ts', Date.now());      // millisecond
                 // console.log('dt', forecast.dt);     // second
 
-                let dayname = dayofweek(forecast.dt * 1000);
-                // console.log(dayname);
+                const daynames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat'];
+                const getday = new Date(forecast.dt_txt).getDay();
+                const dayname = daynames[getday]; 
 
                 let temperature = forecast.main.temp > 0 ? `+${Math.round(forecast.main.temp)}` : `-${forecast.main.temp}`;
                 let html = `
