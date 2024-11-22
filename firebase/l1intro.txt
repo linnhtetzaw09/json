@@ -21,3 +21,61 @@ click > click continue to console
 => Get firebase SDK Code (Software Development Kit)
 
 click > left side bar "project overview > project setting > u can see ur app code"
+
+----------------------------------------------------------------------------------
+
+=> Setting Up firebase VIA NPM (javascript node)
+
+https://nodejs.org/en
+
+=>Download
+https://nodejs.org/en/download/package-manager
+
+--------------------------------------------------
+
+=> Nodemon (auto restart after save(ctrl+s))
+
+(before = just for knowledge why we need nodemon)
+
+ctl+s
+ctl+c
+node server.js
+
+ctl+s
+rs
+
+after = nodemon
+
+nodemon server.js
+ctl+s
+
+=> install 
+npm install -g nodemon
+
+=> specific project (optional)
+npm install --save-dev nodemon
+
+=> Using nodemon
+nodemon server.js
+
+=>Add nodemon to package.json (optional)
+
+"scripts:{
+    "start":"node server.js",
+    "dev":"nodemon server.js"
+}
+
+then u can run nodemon with:
+npm run dev
+
+--------------------------------------------
+
+
+optional
+npm init -y 
+
+npm install firebase   or  npm i firebase
+
+https://firebase.google.com/ > Docs > overview > firebase fundmentals
+
+

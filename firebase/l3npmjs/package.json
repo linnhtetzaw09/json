@@ -1,0 +1,8 @@
+{
+  "name": "l3npmjs",
+  "main": "index.js",
+  "dependencies": {
+    "firebase": "^11.0.1"
+  },
+  "type": "module"
+}
