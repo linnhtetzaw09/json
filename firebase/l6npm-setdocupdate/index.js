@@ -36,5 +36,63 @@ const db = getFirestore(app);
 
 // => Before Merge
 
+// setDoc(doc(db,"products","myid1002"),{
+//     name:"Speed",
+//     type:"drink",
+//     price:1000,
+//     unit:"can"
+// }).catch((error)=>{
+//     console.log(error);
+// });
+  
+
+// setDoc(doc(db,"products","myid1002"),{
+// }).then(()=>{
+//   console.log("Updated Successfully")
+// }).catch((error)=>{
+//   console.log(error);
+// });
+
 
 // => After Merge
+
+// setDoc(doc(db,"products","myid1002"),{
+//     name:"Speed",
+//     type:"drink",
+//     price:1000,
+//     unit:"can"
+// }).catch((error)=>{
+//     console.log(error);
+// });
+
+// setDoc(doc(db,"products","myid1002"),{
+// },{merge:true}).then(()=>{
+//   console.log("Updated Successfully")
+// }).catch((error)=>{
+//   console.log(error);
+// });
+
+
+
+// => Before Merge
+
+// setDoc(doc(db,"products","myid1002"),{
+//   stock:300
+// }).then(()=>{
+//   console.log("Updated Successfully")
+// }).catch((error)=>{
+//   console.log(error);
+// });
+
+// => After Merge
+
+// setDoc(doc(db,"products","myid1002"),{
+//     name:"Deedo",
+//     type:"drink",
+//     price:1000,
+//     unit:"can"
+// },{merge:true}).then(()=>{
+//     console.log("Updated Successfully")
+//   }).catch((error)=>{
+//     console.log(error);
+// });
